@@ -7,6 +7,7 @@ class SEG(object):
         _curpath=os.path.normpath(os.path.join(os.getcwd(),_localDir))
         curpath=_curpath
         self.d = {}
+        #self.set([x.rstrip() for x in file(os.path.join(curpath,"geo_dict_main.dic")) ])
         self.set([x.rstrip() for x in file(os.path.join(curpath,"main.dic")) ])
         self.specialWords= set([x.rstrip().decode('utf-8') for x in file(os.path.join(curpath,"suffix.dic"))])
     def set(self,keywords):

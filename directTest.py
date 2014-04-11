@@ -86,7 +86,7 @@ if __name__=="__main__":
 	locList = codecs.open("locations.dic",'r','utf-8')
 	#locLists = open("locations.dic",'r')
 	locList = locList.readlines()	
-	wordsList = codecs.open("main.dic",'r','utf-8')
+	wordsList = codecs.open("geo_main.dic",'r','utf-8')
 	wsrdsList = wordsList.readlines()
 	#locationDic = {}
 	#for locations in locLists:

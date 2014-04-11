@@ -38,9 +38,9 @@ def get_location(sentence,locList):
 			if x == word:
 				skip = 1
 		#for comm in commonList:
-		#if commonDict.has_key(word):
+		if commonDict.has_key(word):
 			#if comm[0:-1] == word:
-		#	skip = 1
+			skip = 1
 		if skip == 1:
 			continue
 		dirty = 0
@@ -124,8 +124,9 @@ def word_combine(words):
 		i += 1
 	return new_wlist
 if __name__=="__main__":
-	uid = " 2147234363"
-	output = codecs.open('TestOutput.txt'+strftime("%Y-%m-%d %H:%M:%S", gmtime())+uid,'w','utf-8')
+	uid = " 2034233260"
+	#uid = " 2147234363"
+	output = codecs.open('TestOutput.txt'+strftime(" %Y-%m-%d %H:%M:%S", gmtime())+uid,'w','utf-8')
 	#line = sys.argv[1]
 	locList = codecs.open("locations.dic",'r','utf-8')
 	#locLists = open("locations.dic",'r')
@@ -138,13 +139,15 @@ if __name__=="__main__":
 	commonDict = {}
 	for item in commonList:
 		commonDict[item[0:-2]] = 0
-#	a = 0
-#	while(1==1):
-#		a+=1
+	#if commonDict.has_key(u'香山'):
+	#	print u"香山"
+	#a = 0
+	#while(1==1):
+	#	a+=1
 	wordsList = codecs.open("main.dic",'r','utf-8')
 	wsrdsList = wordsList.readlines()
-	#db.query("""SELECT * FROM wb_post_beijing_8 WHERE uid = 2034233260 AND zf = 0""")
-	db.query("""SELECT * FROM wb_post_beijing_8 WHERE uid = 2147234363 AND zf = 0""")
+	db.query("""SELECT * FROM wb_post_beijing_8 WHERE uid = 2034233260 AND zf = 0""")
+	#db.query("""SELECT * FROM wb_post_beijing_8 WHERE uid = 2147234363 AND zf = 0""")
 	r = db.store_result()
 	num = r.num_rows()
 	print num
