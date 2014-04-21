@@ -128,7 +128,7 @@ if __name__=="__main__":
 	#uid = " 2147234363"
 	output = codecs.open('TestOutput.txt'+strftime(" %Y-%m-%d %H:%M:%S", gmtime())+uid,'w','utf-8')
 	#line = sys.argv[1]
-	locList = codecs.open("locations.dic",'r','utf-8')
+	locList = codecs.open("geo_dict_locations.dic",'r','utf-8')
 	#locLists = open("locations.dic",'r')
 	locList = locList.readlines()	
 	locDict = {}

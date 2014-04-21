@@ -8,8 +8,8 @@ class SEG(object):
         curpath=_curpath
         self.d = {}
         #self.set([x.rstrip() for x in file(os.path.join(curpath,"geo_dict_main.dic")) ])
-        self.set([x.rstrip() for x in file(os.path.join(curpath,"main.dic")) ])
-        self.specialWords= set([x.rstrip().decode('utf-8') for x in file(os.path.join(curpath,"suffix.dic"))])
+        self.set([x.rstrip() for x in file(os.path.join(curpath,"dictionary/main.dic")) ])
+        self.specialWords= set([x.rstrip().decode('utf-8') for x in file(os.path.join(curpath,"dictionary/suffix.dic"))])
     def set(self,keywords):
         p = self.d
         q = {}
@@ -32,7 +32,7 @@ class SEG(object):
                 p = p[char]
         pass
     def _binary_seg(self,s):
-    	print "binary "+s
+    	#print "binary "+s
         ln = len(s)
         if ln==1:
             	return s,146
@@ -55,7 +55,7 @@ class SEG(object):
 	i = 0
 	while i < len(s):
 		if s[i] in self.specialWords:
-			print "special " + s[i]
+			#print "special " + s[i]
 			R.append(s[i])
 			i+=1
 		else:

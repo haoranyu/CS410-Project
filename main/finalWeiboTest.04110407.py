@@ -5,6 +5,7 @@ import codecs
 import MySQLdb as mysql
 from time import gmtime, strftime
 import re
+import sys
 
 seg = SEG()
 
@@ -158,22 +159,22 @@ def freq_count(sen):
 
 
 if __name__=="__main__":
-	uid = " 2147234363"
-	output = codecs.open('TestOutput.txt'+strftime("%Y-%m-%d %H:%M:%S", gmtime())+uid,'w','utf-8')
-	locList = codecs.open("locations.dic",'r','utf-8')
-	locList = locList.readlines()	
+	uid = str(sys.argv[1])
+	output = codecs.open('../outputs/output.txt.'+strftime("%Y-%m-%d,%H:%M:%S,", gmtime())+uid,'w','utf-8')
+	locList = codecs.open("dictionary/locations.dic",'r','utf-8')
+	locList = locList.readlines()
 	locDict = {}
 	for item in locList:
 		locDict[item] = 0
-	commonList = codecs.open("geo_dict_main.dic",'r','utf-8')
+	commonList = codecs.open("dictionary/geo_dict_main.dic",'r','utf-8')
 	commonList = commonList.readlines()
 	commonDict = {}
 	for item in commonList:
 		commonDict[item[0:-2]] = 0
-	wordsList = codecs.open("main.dic",'r','utf-8')
+	wordsList = codecs.open("dictionary/main.dic",'r','utf-8')
 	wordsList = wordsList.readlines()
-	#db.query("""SELECT * FROM wb_post_beijing_8 WHERE uid = 2034233260 AND zf = 0""")
-	db.query("""SELECT * FROM wb_post_beijing_8 WHERE uid = 2147234363 AND zf = 0""")
+	db.query("SELECT * FROM wb_post_beijing_8 WHERE uid = "+uid+" AND zf = 0")
+	#query = ("SELECT * FROM wb_post_beijing_8 WHERE uid = %s AND zf = 0")
 	r = db.store_result()
 	num = r.num_rows()
 	print num
