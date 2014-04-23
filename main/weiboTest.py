@@ -128,13 +128,13 @@ if __name__=="__main__":
 	#uid = " 2147234363"
 	output = codecs.open('TestOutput.txt'+strftime(" %Y-%m-%d %H:%M:%S", gmtime())+uid,'w','utf-8')
 	#line = sys.argv[1]
-	locList = codecs.open("geo_dict_locations.dic",'r','utf-8')
+	locList = codecs.open("dictionary/geo_dict_locations.dic",'r','utf-8')
 	#locLists = open("locations.dic",'r')
 	locList = locList.readlines()	
 	locDict = {}
 	for item in locList:
 		locDict[item] = 0
-	commonList = codecs.open("geo_dict_main.dic",'r','utf-8')
+	commonList = codecs.open("dictionary/geo_dict_main.dic",'r','utf-8')
 	commonList = commonList.readlines()
 	commonDict = {}
 	for item in commonList:
@@ -144,7 +144,7 @@ if __name__=="__main__":
 	#a = 0
 	#while(1==1):
 	#	a+=1
-	wordsList = codecs.open("main.dic",'r','utf-8')
+	wordsList = codecs.open("dictionary/geo_main.dic",'r','utf-8')
 	wsrdsList = wordsList.readlines()
 	db.query("""SELECT * FROM wb_post_beijing_8 WHERE uid = 2034233260 AND zf = 0""")
 	#db.query("""SELECT * FROM wb_post_beijing_8 WHERE uid = 2147234363 AND zf = 0""")

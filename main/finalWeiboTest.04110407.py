@@ -160,7 +160,8 @@ def freq_count(sen):
 
 if __name__=="__main__":
 	uid = str(sys.argv[1])
-	output = codecs.open('../outputs/output.txt.'+strftime("%Y-%m-%d,%H:%M:%S,", gmtime())+uid,'w','utf-8')
+	output = codecs.open('../outputs/output.txt.'+strftime("%Y-%m-%d,%H:%M:%S,", gmtime())+uid,'w+','utf-8')
+	#locList = codecs.open("dictionary/beijing_common.dic",'r','utf-8')
 	locList = codecs.open("dictionary/locations.dic",'r','utf-8')
 	locList = locList.readlines()
 	locDict = {}
@@ -186,7 +187,8 @@ if __name__=="__main__":
 		query = a[7]
 		uw = a[0]+","+a[2]
 		line = re.sub(r'href=[\'"]?([^\'" >]+)',"",query)
-		line = re.sub(r'((&lt;a)|(target=&quot;_blank&quot;)|(&gt;))', '', line)
+		line = re.sub(r'((alt=&quot;)|(&lt;a)|(&lt;img)|(src=&quot;)|(target=&quot;_blank&quot;)|(&gt;)|(&quot;)|(&amp;))', '', line)
+		line = re.sub(r'http://\S+', '', line)
 		sent = segment(line)
 		for each in sent:
 			if each == '':
@@ -197,7 +199,7 @@ if __name__=="__main__":
 		#print abcde
 	linesOutput = output.readlines()
 	for lineO in linesOutput:
-		if lineO[0:8] == "(((  )))":
+		if lineO[-2] == "0":
 			continue
 		else:
 			output.write(lineO)
