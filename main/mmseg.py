@@ -64,7 +64,7 @@ class SEG(object):
 	R.reverse()
 	return R,146
     def _pro_unreg(self,piece):
-        print piece
+        #print piece
         R = []
         tmp = re.sub(u"。|，|,|！|…|!|《|》|<|>|\"|'|:|：|？|\?|、|\||“|”|‘|’|；|—|（|）|·|\(|\)|　"," ",piece).split()
         ln1 = len(tmp)
