@@ -66,7 +66,7 @@ def word_combine(words):
 				if j == len(words):
 					break
 			if wordsDic.has_key(combine):
-				print "combine succed"+combine
+				#print "combine succed"+combine
 				new_wlist.append(combine)
 				combit = 1
 			if combit == 0:
@@ -86,7 +86,6 @@ if __name__=="__main__":
 	wordsDic = {}
 	for word in wordsList:
 		ab = word[:-2]
-		print ab
 		wordsDic[ab] = 0
 	sent = segment(line)
 	get_location(sent, locList)

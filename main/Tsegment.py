@@ -9,7 +9,7 @@ import json
 from datetime import datetime
 
 seg = SEG()
-db = mysql.connect(host="localhost",user="root",passwd="CrAcK146",db="weibo", charaset = "utf8")
+db = mysql.connect(host="localhost",user="root",passwd="CrAcK146",db="weibo")
 
 def segment(text):
 	wlist = seg.do_seg(text)
@@ -50,16 +50,17 @@ def word_combine(words):
 def extract(iid):
 	uidList = open("../outputs/uid/uid"+str(iid)+".txt",'r')
 	uidList = uidList.readlines()
+	db.query("SELECT * FROM wb_post_beijing_"+str(iid)+" order by uid")
+	r = db.store_result()
+	num = r.num_rows()
+
 	for uid in uidList:
 		uid = uid[:-1]
 		print datetime.now()
 		print uid
 		user = codecs.open("../outputs/user_"+str(iid)+"/"+uid+".txt",'w','utf-8')
 		#print ("SELECT * FROM wb_post_beijing_8 WHERE uid = "+uid)
-		db.query("SELECT * FROM wb_post_beijing_"+str(iid)+" WHERE uid = "+uid)
-		r = db.store_result()
-		num = r.num_rows()
-		print num
+				print num
 		i = 0
 		while(i<num):
 			line = (r.fetch_row())[0]
