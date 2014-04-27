@@ -32,16 +32,16 @@ class SEG(object):
                 p = p[char]
         pass
     def _binary_seg(self,s):
-    	print "binary "+s
+    	#print "binary "+s
         ln = len(s)
         if ln==1:
             	return s,146
 	if ln==2:
 		if s[0] in self.specialWords:
-			print "20 "+s
+			#print "20 "+s
 			return [s[1],s[0]],0
 		elif s[1] in self.specialWords:
-			print "21 "+s
+			#print "21 "+s
 			return [s[1],s[0]],1
 		else:
 			return [s[1],s[0]],146
@@ -55,7 +55,7 @@ class SEG(object):
 	i = 0
 	while i < len(s):
 		if s[i] in self.specialWords:
-			print "special " + s[i]
+			#print "special " + s[i]
 			R.append(s[i])
 			i+=1
 		else:
