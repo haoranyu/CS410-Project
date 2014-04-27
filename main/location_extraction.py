@@ -17,7 +17,6 @@ filterList = [u'北京市',u'北京',u'人民',u'中国']
 
 def segment(text):
 	wlist = seg.do_seg(text)
-	#wlist = word_combine(wlist)
 	wlist.reverse()
 	for thing in wlist:
 		print thing
@@ -32,21 +31,21 @@ def get_location(sentence, locDb):
 		j = i+1
 		word += sentence[j]
 	#	locDb.query("select sname from wb_beijng_location where sname like'" +word+"'")
-	#	if locationIdDic.has_key(word):	
-	#		lid = locationIdDic[word]
-	#		locDb.query("select sname from wb_beijing_location where lid = "+str(lid))
-	#		r = locDb.store_result()
-	#		for i in range(r.num_rows()):
-	#			print (r.fetch_row()[0])[0]
-	#	else:
-	#		if locationIdDic.has_key(sentence[i]):
-	#			print "first"
-	#			lid = locationIdDic[sentence[i]]
-	#			locDb.query("select sname from wb_beijing_location where lid="+str(lid))
-	#			print ("select sname from wb_beijing_location where lid="+str(lid))
-	#			r = locDb.store_result()
-	#			for i in range(r.num_rows()):
-	#				print (r.fetch_row()[0])[0]
+		if locationIdDic.has_key(word):	
+			#lid = locationIdDic[word]
+			locDb.query("select sname from wb_beijing_location where lid = "+str(lid))
+			r = locDb.store_result()
+			for i in range(r.num_rows()):
+				print (r.fetch_row()[0])[0]
+		else:
+			if locationIdDic.has_key(sentence[i]):
+				print "first"
+				lid = locationIdDic[sentence[i]]
+				locDb.query("select sname from wb_beijing_location where lid="+str(lid))
+				print ("select sname from wb_beijing_location where lid="+str(lid))
+				r = locDb.store_result()
+				for i in range(r.num_rows()):
+					print (r.fetch_row()[0])[0]
 
 def word_combine(words):
 	i = 0
