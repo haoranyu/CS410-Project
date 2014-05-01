@@ -48,29 +48,27 @@ def word_combine(words):
 	return new_wlist
 
 def extract(iid):
-	uidList = open("../outputs/uid/uid"+str(iid)+".txt",'r')
-	uidList = uidList.readlines()
-	uidDic = {}
-	for uid in uidList:
-		uidDic[uid[:-1]] = 0
-	#user = codecs.open("../outputs/user_"+str(iid)+"/"+uid+".txt",'w','utf-8')
-	db.query("SELECT * FROM wb_post_beijing_"+str(iid))
-	r = db.store_result()
-	num = r.num_rows()
-	#print num
+	c = db.cursor()
+	c.execute("SELECT * FROM wb_post_beijing_"+str(iid))
+	rs = c.fetchall()
+	num = len(rs)
+	print num
 	print datetime.now()
 	i = 0
-	while(i<num):
-		line = (r.fetch_row())[0]
+	for line in rs:
+		if i % 100000 == 0:
+			print i
 		query = line[7]
 		uid = line[2]
 		#print str(uid) + "  " + str(datetime.now())
 		wid = line[0]
 		time = line[3]
-		user = codecs.open("../outputs/user_post/user_"+str(iid)+"/"+str(uid)+".txt",'a','utf-8')
-		line = re.sub(r'href=[\'"]?([^\'" >]+)',"",query)
-		line = re.sub(r'(&lt;(.*?)&gt;)|(&amp;quot;(.*?)&amp;quot;)', '', line)
+		user = codecs.open("test/user_"+str(iid)+"/"+str(uid)+".txt",'a','utf-8')
+		line = re.sub(r'(&lt;(.*?)&gt;)|(&amp;quot;(.*?)&amp;quot;)', '', query)
+		line = re.sub(r'(//(.*?))|(@(.*?)//:)','',line)
+		line = re.sub(r'href=[\'"]?([^\'" >]+)',"",line)
 		line = re.sub(r'http://\S+', '', line)
+		#print str(uid) + ": " + line
 		sent = segment(line)
 		for each in sent:
 			if each == '':
@@ -89,7 +87,7 @@ if __name__=="__main__":
 	for word in wordsList:
 		ab = word[:-2]
 		wordsDic[ab] = 0
-	id = 8
+	id = 2
 	while id < 9:
 		extract(id)
 		id+=1
