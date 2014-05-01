@@ -87,7 +87,7 @@ if __name__=="__main__":
 	for word in wordsList:
 		ab = word[:-2]
 		wordsDic[ab] = 0
-	id = 2
+	id = 3
 	while id < 9:
 		extract(id)
 		id+=1

@@ -6,7 +6,7 @@ import glob
 
 i = 0
 skip = 0
-output = codecs.open('samples.txt','w','utf-8')
+output = codecs.open('samples_test.txt','w','utf-8')
 dic = open('location_list/location.dic','r')
 dic = dic.readlines()
 dictionary = {}
@@ -15,7 +15,8 @@ for word in dic:
 	dictionary[word[0]] = word[1]
 print dictionary.keys()
 j = 146
-for filename in glob.glob('post_all/*.txt'):
+for filename in glob.glob('../main/test/user_1/*.txt'):
+#for filename in glob.glob('post_all/*.txt'):
 	if j%11 != 0:
 		print "no"
 		j+=1
