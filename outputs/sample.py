@@ -14,7 +14,12 @@ for word in dic:
 	word = json.loads(word)
 	dictionary[word[0]] = word[1]
 print dictionary.keys()
-for filename in glob.glob('user_1/*.txt'):
+j = 146
+for filename in glob.glob('post_all/*.txt'):
+	if j%11 != 0:
+		print "no"
+		j+=1
+		continue
 	posts = open(filename,'r')
 	posts = posts.readlines()
 	for post in posts:
@@ -41,3 +46,4 @@ for filename in glob.glob('user_1/*.txt'):
 				output.write(x)
 				output.write(" ")
 			output.write('\n')
+	j+=1

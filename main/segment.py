@@ -69,7 +69,7 @@ def extract(iid):
 		time = line[3]
 		user = codecs.open("../outputs/user_post/user_"+str(iid)+"/"+str(uid)+".txt",'a','utf-8')
 		line = re.sub(r'href=[\'"]?([^\'" >]+)',"",query)
-		line = re.sub(r'((alt=&quot;)|(&lt;a)|(&lt;img)|(src=&quot;)|(target=&quot;_blank&quot;)|(&gt;)|(&quot;)|(&amp;))', '', line)
+		line = re.sub(r'(&lt;(.*?)&gt;)|(&amp;quot;(.*?)&amp;quot;)', '', line)
 		line = re.sub(r'http://\S+', '', line)
 		sent = segment(line)
 		for each in sent:
